@@ -1,0 +1,25 @@
+{
+  "name": "loredex-obsidian",
+  "version": "0.1.0",
+  "description": "Obsidian plugin for loredex — product dashboard, handoff alerts, and an in-app MCP server",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Ahmed Tawfeeq",
+  "scripts": {
+    "build": "node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "smoke": "node esbuild.config.mjs smoke && node smoke.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "loredex": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "esbuild": "^0.25.0",
+    "obsidian": "latest",
+    "typescript": "^6.0.3"
+  }
+}
