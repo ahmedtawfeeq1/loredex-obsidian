@@ -69,7 +69,7 @@ The vault is treated as **untrusted input** end to end — same rules as the lor
 ## Development
 
 ```bash
-npm install          # needs loredex ≥ 0.9 on npm; before that: npm pkg set dependencies.loredex=file:../loredex
+npm install          # installs loredex from npm
 npm run typecheck
 npm run build        # bundles src/main.ts → main.js (CJS, obsidian external)
 npm run smoke        # boots the HTTP server against a temp vault, drives a real MCP session
