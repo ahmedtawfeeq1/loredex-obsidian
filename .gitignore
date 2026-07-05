@@ -3,5 +3,5 @@ main.js
 smoke.js
 *.map
 .DS_Store
-# temporary until loredex@0.10 is on npm — lockfile pins a local file: install
+# temporary until loredex@0.9 is on npm — lockfile pins a local file: install
 package-lock.json
