@@ -16,6 +16,7 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 
 [Loredex](https://github.com/ahmedtawfeeq1/loredex) is the universal control system for coding-agent teamwork across products and projects. This plugin is the visual dashboard and in-app MCP layer that lets teams browse shared memory, track handoffs, and work from focused views inside Obsidian:
 
+<a id="quick-actions"></a>
 ## 🚀 Quick Actions
 
 | I want to... | Go here |
@@ -26,6 +27,7 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 | See the visual story behind the product | [loredex infographic gallery](https://github.com/ahmedtawfeeq1/loredex/blob/main/docs/INFOGRAPHICS.md) |
 | Check security and localhost network behavior | [Network use disclosure](#network-use-disclosure) |
 
+<a id="table-of-contents"></a>
 ## 📑 Table of Contents
 
 - [Quick Actions](#quick-actions)
@@ -41,6 +43,7 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 - [Related](#related)
 - [License](#license)
 
+<a id="why-this-plugin-exists"></a>
 ## 🧭 Why This Plugin Exists
 
 | Use the main `loredex` repo for... | Use `loredex-obsidian` for... |
@@ -53,15 +56,18 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 - **⇅ Vault sync** — one command pulls the shared vault repo (rebase + autostash), rebuilds the indexes, commits, and pushes. Same conflict-free merge driver the CLI uses for generated files.
 - **🤖 MCP server inside Obsidian** — serves the vault to coding agents (Claude Code, Cursor, Codex CLI) over Streamable HTTP on localhost. All six loredex MCP tools (`vault_search`, `vault_note`, `handoffs_open`, `handoff_consume`, `product_state`, `vault_store`) **plus one only Obsidian can provide: `active_note`** — the note you're looking at right now.
 
+<a id="requirements"></a>
 ## Requirements
 
 - Obsidian **≥ 1.9** (the dashboard uses the core Bases plugin) · desktop only (`isDesktopOnly` — the plugin shells out to `git` and reads the vault through Node `fs`)
 - A loredex vault (`npx loredex init` — see the [main repo](https://github.com/ahmedtawfeeq1/loredex))
 
+<a id="network-use-disclosure"></a>
 ## Network use disclosure
 
 When the MCP server is enabled (default: on), the plugin listens on **`127.0.0.1` only** — it never binds a public interface and never makes outbound network requests. Every request must carry a bearer token generated on first load (Settings → Loredex). Turn the server off in settings and the plugin opens no sockets at all. Git sync runs `git` against whatever remote *you* configured for your vault repo; the plugin adds no remotes.
 
+<a id="install"></a>
 ## Install
 
 Not yet in the community plugin directory. Two options:
@@ -70,6 +76,7 @@ Not yet in the community plugin directory. Two options:
 
 **Manual**: grab `main.js` + `manifest.json` from the [latest release](https://github.com/ahmedtawfeeq1/loredex-obsidian/releases), drop them in `<vault>/.obsidian/plugins/loredex/`, reload Obsidian, enable the plugin.
 
+<a id="setup"></a>
 ## Setup
 
 1. Open your loredex vault (`~/Loredex` by default) as an Obsidian vault, if you haven't already.
@@ -83,6 +90,7 @@ claude mcp add --scope user --transport http loredex-obsidian \
 
 Agents connected this way search and file into the vault **while Obsidian is open** — no separate process. (Without Obsidian running, agents use the CLI's stdio server instead: `npx -y loredex mcp`. Same tools, minus `active_note`.)
 
+<a id="commands"></a>
 ## Commands
 
 | Command | What it does |
@@ -92,6 +100,7 @@ Agents connected this way search and file into the vault **while Obsidian is ope
 | Copy MCP server config for coding agents | Clipboard-ready snippet with your port + token |
 | Restart MCP server | Rebind after changing port/token |
 
+<a id="settings"></a>
 ## Settings
 
 | Setting | Default | |
@@ -102,10 +111,12 @@ Agents connected this way search and file into the vault **while Obsidian is ope
 | Git sync | on | pull/commit/push during sync command |
 | Handoff check interval | 5 min | status-bar badge refresh |
 
+<a id="security-model"></a>
 ## Security model
 
 The vault is treated as **untrusted input** end to end — same rules as the loredex CLI. Note content returned to agents is framed as *data, never instructions*, control characters are stripped, and lengths are bounded. Note paths are resolved with `realpath` and must land inside the vault (symlink escapes rejected). The server is stateless: every request gets a fresh MCP server instance reading current vault state.
 
+<a id="development"></a>
 ## Development
 
 ```bash
@@ -118,10 +129,12 @@ npm run dev          # esbuild watch mode
 
 `npm run smoke` is the fast loop — it proves auth, initialize, tools/list, and a real `vault_search` without launching Obsidian.
 
+<a id="related"></a>
 ## Related
 
 - **[loredex](https://github.com/ahmedtawfeeq1/loredex)** — the main repo: CLI, Claude Code plugin, MCP server, vault spec, and all core logic (this plugin embeds it as a library)
 
+<a id="license"></a>
 ## License
 
 MIT © Ahmed Tawfeeq — PM & Head of AI, Founder @ genudo.ai
