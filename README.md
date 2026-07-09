@@ -16,6 +16,38 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 
 [Loredex](https://github.com/ahmedtawfeeq1/loredex) auto-files AI-agent-generated markdown (research, decisions, handoffs) into an Obsidian-compatible vault. This plugin closes the loop inside Obsidian:
 
+## 🚀 Quick Actions
+
+| I want to... | Go here |
+|---|---|
+| Install the plugin fast | [Install](#install) |
+| Connect my agent to Obsidian's local MCP server | [Setup](#setup) |
+| Understand how this fits into the full loredex framework | [Main repo](https://github.com/ahmedtawfeeq1/loredex) |
+| See the visual story behind the product | [loredex infographic gallery](https://github.com/ahmedtawfeeq1/loredex/blob/main/docs/INFOGRAPHICS.md) |
+| Check security and localhost network behavior | [Network use disclosure](#network-use-disclosure) |
+
+## 📑 Table of Contents
+
+- [Quick Actions](#-quick-actions)
+- [Why this plugin exists](#-why-this-plugin-exists)
+- [Requirements](#requirements)
+- [Network use disclosure](#network-use-disclosure)
+- [Install](#install)
+- [Setup](#setup)
+- [Commands](#commands)
+- [Settings](#settings)
+- [Security model](#security-model)
+- [Development](#development)
+- [Related](#related)
+- [License](#license)
+
+## 🧭 Why This Plugin Exists
+
+| Use the main `loredex` repo for... | Use `loredex-obsidian` for... |
+|---|---|
+| Routing markdown into the vault, running `adopt`, `route`, `curate`, `handoff`, and the CLI MCP server | Opening the dashboard, syncing the vault from inside Obsidian, watching handoffs, and exposing `active_note` to agents |
+| Setting the shared knowledge structure | Making that structure visible and agent-accessible where you actually read it |
+
 - **📊 Native dashboard** — one click (ribbon or command) opens `_index/Dashboard.base`, the Obsidian Bases database loredex generates: latest notes, open handoffs, by-project cards, stale list. Sortable, filterable, 100% native UI.
 - **🔔 Handoff badge** — the status bar shows how many cross-team handoffs are open across the product. Click it to open the dashboard.
 - **⇅ Vault sync** — one command pulls the shared vault repo (rebase + autostash), rebuilds the indexes, commits, and pushes. Same conflict-free merge driver the CLI uses for generated files.
