@@ -1,13 +1,30 @@
-# Loredex for Obsidian
+<div align="center">
 
-Browse your [loredex](https://github.com/ahmedtawfeeq1/loredex) knowledge vault where it lives — and let your AI coding agents read and file into it while you do.
+# 🔮 Loredex for Obsidian
 
-Loredex is an open-source CLI + Claude Code plugin that auto-files AI-agent-generated markdown (research, decisions, handoffs) into an Obsidian-compatible vault. This plugin is the Obsidian side of that loop:
+**The Obsidian side of [loredex](https://github.com/ahmedtawfeeq1/loredex) — browse your agents' knowledge vault where it lives, and let coding agents read it while you do.**
 
-- **Live product dashboard** — a workspace view showing every project's state: note counts, active topics, stale briefs, open cross-team handoffs, cross-project references. Computed fresh from the vault, never written to a file.
-- **Handoff badge** — the status bar shows how many handoffs are open across the product. Click it to open the dashboard.
-- **Vault sync** — one command pulls the shared vault repo (rebase + autostash), rebuilds the `_index/` maps of content, commits, and pushes. Same conflict-free merge driver the CLI uses for generated files.
-- **MCP server inside Obsidian** — serves your vault to coding agents (Claude Code, Cursor, Codex CLI) over Streamable HTTP on localhost. All six loredex MCP tools (`vault_search`, `vault_note`, `handoffs_open`, `handoff_consume`, `product_state`, `vault_store`) plus one only Obsidian can provide: `active_note`, the note you're looking at right now.
+[![release](https://img.shields.io/github/v/release/ahmedtawfeeq1/loredex-obsidian?color=7c3aed)](https://github.com/ahmedtawfeeq1/loredex-obsidian/releases)
+[![core: loredex](https://img.shields.io/npm/v/loredex?label=core%3A%20loredex&color=cb3837)](https://www.npmjs.com/package/loredex)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, and all core logic live in the main repo: **[ahmedtawfeeq1/loredex](https://github.com/ahmedtawfeeq1/loredex)**. This plugin embeds that package as a library and re-hosts it inside Obsidian.
+
+</div>
+
+---
+
+[Loredex](https://github.com/ahmedtawfeeq1/loredex) auto-files AI-agent-generated markdown (research, decisions, handoffs) into an Obsidian-compatible vault. This plugin closes the loop inside Obsidian:
+
+- **📊 Native dashboard** — one click (ribbon or command) opens `_index/Dashboard.base`, the Obsidian Bases database loredex generates: latest notes, open handoffs, by-project cards, stale list. Sortable, filterable, 100% native UI.
+- **🔔 Handoff badge** — the status bar shows how many cross-team handoffs are open across the product. Click it to open the dashboard.
+- **⇅ Vault sync** — one command pulls the shared vault repo (rebase + autostash), rebuilds the indexes, commits, and pushes. Same conflict-free merge driver the CLI uses for generated files.
+- **🤖 MCP server inside Obsidian** — serves the vault to coding agents (Claude Code, Cursor, Codex CLI) over Streamable HTTP on localhost. All six loredex MCP tools (`vault_search`, `vault_note`, `handoffs_open`, `handoff_consume`, `product_state`, `vault_store`) **plus one only Obsidian can provide: `active_note`** — the note you're looking at right now.
+
+## Requirements
+
+- Obsidian **≥ 1.9** (the dashboard uses the core Bases plugin) · desktop only (`isDesktopOnly` — the plugin shells out to `git` and reads the vault through Node `fs`)
+- A loredex vault (`npx loredex init` — see the [main repo](https://github.com/ahmedtawfeeq1/loredex))
 
 ## Network use disclosure
 
@@ -17,39 +34,30 @@ When the MCP server is enabled (default: on), the plugin listens on **`127.0.0.1
 
 Not yet in the community plugin directory. Two options:
 
-**BRAT** (recommended): install [BRAT](https://obsidian.md/plugins?id=obsidian42-brat), then *Add beta plugin* → `ahmedtawfeeq1/loredex-obsidian`.
+**BRAT** (recommended — auto-updates): install [BRAT](https://obsidian.md/plugins?id=obsidian42-brat), then *Add beta plugin* → `ahmedtawfeeq1/loredex-obsidian`.
 
 **Manual**: grab `main.js` + `manifest.json` from the [latest release](https://github.com/ahmedtawfeeq1/loredex-obsidian/releases), drop them in `<vault>/.obsidian/plugins/loredex/`, reload Obsidian, enable the plugin.
-
-Desktop only (`isDesktopOnly`) — the plugin shells out to `git` and reads the vault through Node `fs`.
 
 ## Setup
 
 1. Open your loredex vault (`~/Loredex` by default) as an Obsidian vault, if you haven't already.
 2. Enable the plugin. A bearer token is generated automatically.
-3. Run the command **“Loredex: Copy MCP server config for coding agents”** and paste the snippet into your project's `.mcp.json` (or your agent's MCP config):
+3. Run the command **“Loredex: Copy MCP server config for coding agents”** and add it to your agent. Recommended: user-scope config so the token never lands in a committed `.mcp.json`:
 
-```json
-{
-  "mcpServers": {
-    "loredex": {
-      "type": "http",
-      "url": "http://127.0.0.1:28428/mcp",
-      "headers": { "Authorization": "Bearer <your-token>" }
-    }
-  }
-}
+```bash
+claude mcp add --scope user --transport http loredex-obsidian \
+  http://127.0.0.1:28428/mcp --header "Authorization: Bearer <your-token>"
 ```
 
-Agents connected this way search and file into the vault **while Obsidian is open** — no separate process. (Without Obsidian running, agents can use the CLI's stdio server instead: `npx -y loredex mcp`. Same tools, minus `active_note`.)
+Agents connected this way search and file into the vault **while Obsidian is open** — no separate process. (Without Obsidian running, agents use the CLI's stdio server instead: `npx -y loredex mcp`. Same tools, minus `active_note`.)
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| Open product dashboard | Live view of all projects, briefs, handoffs, cross-project edges |
+| Open product dashboard | Opens `_index/Dashboard.base` — the native Bases database over every note, handoff, and project |
 | Sync vault | git pull → rebuild indexes → commit → push |
-| Copy MCP server config for coding agents | Clipboard-ready `.mcp.json` snippet with your port + token |
+| Copy MCP server config for coding agents | Clipboard-ready snippet with your port + token |
 | Restart MCP server | Rebind after changing port/token |
 
 ## Settings
@@ -58,7 +66,7 @@ Agents connected this way search and file into the vault **while Obsidian is ope
 |---|---|---|
 | MCP server | on | Streamable HTTP on localhost |
 | Port | 28428 | |
-| Bearer token | generated | regenerate any time |
+| Bearer token | generated | regenerate any time (then re-add the agent config) |
 | Git sync | on | pull/commit/push during sync command |
 | Handoff check interval | 5 min | status-bar badge refresh |
 
@@ -69,7 +77,7 @@ The vault is treated as **untrusted input** end to end — same rules as the lor
 ## Development
 
 ```bash
-npm install          # installs loredex from npm
+npm install          # installs the loredex core from npm
 npm run typecheck
 npm run build        # bundles src/main.ts → main.js (CJS, obsidian external)
 npm run smoke        # boots the HTTP server against a temp vault, drives a real MCP session
@@ -80,7 +88,7 @@ npm run dev          # esbuild watch mode
 
 ## Related
 
-- [loredex](https://github.com/ahmedtawfeeq1/loredex) — the CLI, Claude Code plugin, vault spec, and all core logic (this plugin embeds it as a library)
+- **[loredex](https://github.com/ahmedtawfeeq1/loredex)** — the main repo: CLI, Claude Code plugin, MCP server, vault spec, and all core logic (this plugin embeds it as a library)
 
 ## License
 
