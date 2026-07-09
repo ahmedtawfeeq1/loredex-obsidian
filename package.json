@@ -1,7 +1,7 @@
 {
   "name": "loredex-obsidian",
   "version": "0.2.0",
-  "description": "Obsidian plugin for loredex — product dashboard, handoff alerts, and an in-app MCP server",
+  "description": "Obsidian and MCP dashboard layer for loredex: shared memory, handoffs, focused views, and in-app agent context.",
   "private": true,
   "type": "module",
   "license": "MIT",

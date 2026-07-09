@@ -2,7 +2,7 @@
 
 # 🔮 Loredex for Obsidian
 
-**The Obsidian side of [loredex](https://github.com/ahmedtawfeeq1/loredex) — browse your agents' knowledge vault where it lives, and let coding agents read it while you do.**
+**The Obsidian and MCP dashboard layer for [loredex](https://github.com/ahmedtawfeeq1/loredex) — shared memory, handoffs, and focused views for coding-agent teamwork.**
 
 [![release](https://img.shields.io/github/v/release/ahmedtawfeeq1/loredex-obsidian?color=7c3aed)](https://github.com/ahmedtawfeeq1/loredex-obsidian/releases)
 [![core: loredex](https://img.shields.io/npm/v/loredex?label=core%3A%20loredex&color=cb3837)](https://www.npmjs.com/package/loredex)
@@ -14,7 +14,7 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 
 ---
 
-[Loredex](https://github.com/ahmedtawfeeq1/loredex) auto-files AI-agent-generated markdown (research, decisions, handoffs) into an Obsidian-compatible vault. This plugin closes the loop inside Obsidian:
+[Loredex](https://github.com/ahmedtawfeeq1/loredex) is the universal control system for coding-agent teamwork across products and projects. This plugin is the visual dashboard and in-app MCP layer that lets teams browse shared memory, track handoffs, and work from focused views inside Obsidian:
 
 ## 🚀 Quick Actions
 
