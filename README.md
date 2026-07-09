@@ -28,8 +28,8 @@ Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, a
 
 ## 📑 Table of Contents
 
-- [Quick Actions](#-quick-actions)
-- [Why this plugin exists](#-why-this-plugin-exists)
+- [Quick Actions](#quick-actions)
+- [Why this plugin exists](#why-this-plugin-exists)
 - [Requirements](#requirements)
 - [Network use disclosure](#network-use-disclosure)
 - [Install](#install)
