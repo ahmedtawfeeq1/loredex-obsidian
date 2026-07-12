@@ -1,7 +1,7 @@
 {
   "id": "loredex",
   "name": "Loredex",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "minAppVersion": "1.9.0",
   "description": "Live product dashboard, cross-team handoff alerts, and an MCP server for your loredex knowledge vault — AI agents read and file knowledge while you browse it.",
   "author": "Ahmed Tawfeeq",
