@@ -8,6 +8,8 @@
 [![core: loredex](https://img.shields.io/npm/v/loredex?label=core%3A%20loredex&color=cb3837)](https://www.npmjs.com/package/loredex)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+**loredex ecosystem** &nbsp;·&nbsp; [📖 loredex (CLI + core)](https://github.com/ahmedtawfeeq1/loredex) &nbsp;·&nbsp; [🖥️ Desktop app](https://github.com/ahmedtawfeeq1/loredex-desktop) &nbsp;·&nbsp; **🔮 Obsidian plugin** (you are here)
+
 Part of the **loredex ecosystem** — the CLI, Claude Code plugin, vault spec, and all core logic live in the main repo: **[ahmedtawfeeq1/loredex](https://github.com/ahmedtawfeeq1/loredex)**. This plugin embeds that package as a library and re-hosts it inside Obsidian.
 
 </div>
